@@ -1,5 +1,9 @@
+#ifndef PIO_USB_H
+#define PIO_USB_H
 
-#pragma once
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 #include "pio_usb_configuration.h"
 #include "usb_definitions.h"
@@ -20,3 +24,9 @@ void pio_usb_device_task(void);
 endpoint_t *pio_usb_get_endpoint(usb_device_t *device, uint8_t idx);
 int pio_usb_get_in_data(endpoint_t *ep, uint8_t *buffer, uint8_t len);
 int pio_usb_set_out_data(endpoint_t *ep, const uint8_t *buffer, uint8_t len);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif
