@@ -5,6 +5,8 @@
 #pragma GCC push_options
 #pragma GCC optimize("-O3")
 
+#include <Arduino.h>
+
 #include <stdio.h>
 #include <stdint.h>
 #include <string.h> // memcpy
@@ -1094,7 +1096,7 @@ static int enumerate_device(usb_device_t *device, uint8_t address) {
     } else {
       printf("Failed to get string descriptor (Manufacture)\n");
     }
-    stdio_flush();
+    Serial.flush();
   }
 
   if (idx_product != 0) {
@@ -1104,7 +1106,7 @@ static int enumerate_device(usb_device_t *device, uint8_t address) {
     } else {
       printf("Failed to get string descriptor (Product)\n");
     }
-    stdio_flush();
+    Serial.flush();
   }
 
   if (idx_serial != 0) {
@@ -1114,7 +1116,7 @@ static int enumerate_device(usb_device_t *device, uint8_t address) {
     } else {
       printf("Failed to get string descriptor (Serial)\n");
     }
-    stdio_flush();
+    Serial.flush();
   }
 
   usb_setup_packet_t get_configuration_descriptor_request =
@@ -1248,8 +1250,7 @@ static int enumerate_device(usb_device_t *device, uint8_t address) {
           printf("%02x ", device->control_pipe.rx_buffer[i]);
         }
         printf("\n");
-        stdio_flush();
-
+        Serial.flush();
       } break;
       default:
         break;
